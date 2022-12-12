@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello, world!</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="container">
+    <h1>계산기</h1>
+
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="첫 번째 숫자" id="first-number">
+        <input type="text" class="form-control" placeholder="두 번째 숫자" id="second-number">
+
+        <button class="btn btn-outline-success" type="button" id="plus">더하기</button>
+        <button class="btn btn-outline-danger" type="button" id="minus">빼기</button>
+        <button class="btn btn-outline-primary" type="button" id="mulitply">곱하기</button>
+        <button class="btn btn-outline-warning" type="button" id="divide">나누기</button>
+        <span class="input-group-text" id="result"></span>
+    </div>
+</main>
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
