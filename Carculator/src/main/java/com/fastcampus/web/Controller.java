@@ -21,4 +21,9 @@ public class Controller {
         return "/part3/index";
     }
 
+    @RequestMapping("/part4/index")
+    public String part4(){
+        return "/part4/index";
+    }
+
 }
