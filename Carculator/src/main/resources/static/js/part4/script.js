@@ -181,4 +181,11 @@ $(document).ready(function() {
 
     $("#buy").click(buyHandler);
     $("#sell").click(sellHandler);
+
+    $("#search").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#trade-history tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
 });
