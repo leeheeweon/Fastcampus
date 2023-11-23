@@ -16,7 +16,8 @@ spring:
     url: jdbc:mysql://localhost:3306/board
     username: leeheeweon
     password: 1234
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
+
   jpa:
     defer-datasource-initialization: true
     hibernate:
@@ -27,6 +28,7 @@ spring:
       hibernate:
         format_sql: true
         default_batch_fetch_size: 100
+        dialect: org.hibernate.dialect.MySQLDialect
   h2:
     console:
       enabled: false

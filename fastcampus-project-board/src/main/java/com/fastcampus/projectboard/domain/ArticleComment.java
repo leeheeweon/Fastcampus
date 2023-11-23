@@ -8,13 +8,8 @@ import jakarta.persistence.ManyToOne;
 
 import java.time.LocalDateTime;
 
-@Entity
 public class ArticleComment {
-    @Id
-    @GeneratedValue
     private Long id;
-    @ManyToOne
-    @Column(name = "")
     private Article article; // 게시글(ID)
     private String content; // 본문
 
