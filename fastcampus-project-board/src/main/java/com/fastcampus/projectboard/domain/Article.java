@@ -1,9 +1,17 @@
 package com.fastcampus.projectboard.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@Entity
 public class Article {
+
+    @Id
+    @GeneratedValue
     private Long id;
     private String title; // 제목
     private String content; // 본문
