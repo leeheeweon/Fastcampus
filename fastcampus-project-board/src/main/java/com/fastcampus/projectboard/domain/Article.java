@@ -1,11 +1,15 @@
 package com.fastcampus.projectboard.domain;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Index;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OrderBy;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -16,20 +20,24 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.LinkedHashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Getter
-@Entity
 @ToString
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(indexes = {
         @Index(columnList = "title"),
         @Index(columnList = "hashTag"),
-        @Index(columnList = "createAt"),
-        @Index(columnList = "createBy")
+        @Index(columnList = "createdAt"),
+        @Index(columnList = "createdBy")
 })
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EntityListeners(AuditingEntityListener.class)
+@Entity
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,15 +53,20 @@ public class Article {
     private String hashTag; // 해시태그
 
     @CreatedDate
-    private LocalDateTime createAt; // 생성일시
+    private LocalDateTime createdAt; // 생성일시
     @CreatedBy
     @Column(length = 100)
-    private String createBy; // 생성자
+    private String createdBy; // 생성자
     @LastModifiedDate
     private LocalDateTime modifiedAt; // 수정일시
     @LastModifiedBy
     @Column(length = 100)
     private String modifiedBy; //수정자
+
+    @OrderBy("id")
+    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private final Set<ArticleComment> articleComments = new LinkedHashSet<>();
 
     private Article(String title, String content, String hashTag) {
         this.title = title;
@@ -61,7 +74,7 @@ public class Article {
         this.hashTag = hashTag;
     }
 
-    private static Article of(String title, String content, String hashTag) {
+    public static Article of(String title, String content, String hashTag) {
         return new Article(title, content, hashTag);
     }
 
