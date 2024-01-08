@@ -1,10 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>$Title$</title>
 </head>
 <body>
-$END$
+<header th:replace="header :: header"></header>
+<main>
+    <form>
+        <label for="search-type" hidden>유형</label>
+        <select id="search-type" name="search-type">
+            <option>제목</option>
+            <option>본문</option>
+            <option>ID</option>
+            <option>닉네임</option>
+            <option>해시태그</option>
+        </select>
+        <label for="search-value" hidden>검색어
+            <input type="text" id="search-value" name="search-value" placeholder="검색어를 입력하세요">
+        </label>
+        <button type="submit">검색</button>
+    </form>
+
+    <table>
+        <thead>
+        <tr>
+            <th>제목</th>
+            <th>해시태그</th>
+            <th>작성자</th>
+            <th>작성일</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>첫 번째 게시글입니다.</td>
+            <td>#java</td>
+            <td>익명</td>
+            <td>2020-01-01 00:00:00</td>
+        </tr>
+        <tr>
+            <td>두 번째 게시글입니다.</td>
+            <td>#spring</td>
+            <td>익명</td>
+            <td>2020-01-02 00:00:00</td>
+        </tr>
+        <tr>
+            <td>세 번째 게시글입니다.</td>
+            <td>#java</td>
+            <td>익명</td>
+            <td>2020-01-03 00:00:00</td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+<footer th:replace="footer::footer"></footer>
 </body>
 </html>
