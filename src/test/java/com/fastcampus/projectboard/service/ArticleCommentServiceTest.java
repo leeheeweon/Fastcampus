@@ -2,9 +2,13 @@ package com.fastcampus.projectboard.service;
 
 import com.fastcampus.projectboard.domain.Article;
 import com.fastcampus.projectboard.domain.ArticleComment;
+<<<<<<< HEAD
 import com.fastcampus.projectboard.domain.UserAccount;
 import com.fastcampus.projectboard.dto.ArticleCommentDto;
 import com.fastcampus.projectboard.dto.UserAccountDto;
+=======
+import com.fastcampus.projectboard.dto.ArticleCommentDto;
+>>>>>>> aa4dea0... #21 - 댓글 서비스 로직의 테스트와 골격 잡기
 import com.fastcampus.projectboard.repository.ArticleCommentRepository;
 import com.fastcampus.projectboard.repository.ArticleRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -14,6 +18,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+<<<<<<< HEAD
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,6 +26,16 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.*;
+=======
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+
+import static org.assertj.core.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
+>>>>>>> aa4dea0... #21 - 댓글 서비스 로직의 테스트와 골격 잡기
 
 @DisplayName("비즈니스 로직 - 댓글")
 @ExtendWith(MockitoExtension.class)
@@ -36,6 +51,7 @@ class ArticleCommentServiceTest {
     void givenArticleId_whenSearchingArticleComments_thenReturnsArticleComments() {
         // Given
         Long articleId = 1L;
+<<<<<<< HEAD
         ArticleComment expected = createArticleComment("content");
         given(articleCommentRepository.findByArticle_Id(articleId)).willReturn(List.of(expected));
 
@@ -47,12 +63,25 @@ class ArticleCommentServiceTest {
                 .hasSize(1)
                 .first().hasFieldOrPropertyWithValue("content", expected.getContent());
         then(articleCommentRepository).should().findByArticle_Id(articleId);
+=======
+        given(articleRepository.findById(articleId)).willReturn(Optional.of(
+                Article.of("title", "content", "#java"))
+        );
+
+        // When
+        List<ArticleCommentDto> articleComments = sut.searchArticleComment(articleId);
+
+        // Then
+        assertThat(articleComments).isNotNull();
+        then(articleRepository).should().findById(articleId);
+>>>>>>> aa4dea0... #21 - 댓글 서비스 로직의 테스트와 골격 잡기
     }
 
     @DisplayName("댓글 정보를 입력하면, 댓글을 저장한다.")
     @Test
     void givenArticleCommentInfo_whenSavingArticleComment_thenSavesArticleComment() {
         // Given
+<<<<<<< HEAD
         ArticleCommentDto dto = createArticleCommentDto("댓글");
         given(articleRepository.getReferenceById(dto.articleId())).willReturn(createArticle());
         given(articleCommentRepository.save(any(ArticleComment.class))).willReturn(null);
@@ -184,4 +213,14 @@ class ArticleCommentServiceTest {
         );
     }
 
+=======
+        given(articleCommentRepository.save(any(ArticleComment.class))).willReturn(null);
+
+        // When
+        sut.saveArticleComment(ArticleCommentDto.of(LocalDateTime.now(), "Uno", LocalDateTime.now(), "Uno", "comment"));
+
+        // Then
+        then(articleCommentRepository).should().save(any(ArticleComment.class));
+    }
+>>>>>>> aa4dea0... #21 - 댓글 서비스 로직의 테스트와 골격 잡기
 }

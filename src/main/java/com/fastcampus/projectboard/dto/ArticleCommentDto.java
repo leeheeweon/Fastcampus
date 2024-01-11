@@ -1,5 +1,6 @@
 package com.fastcampus.projectboard.dto;
 
+<<<<<<< HEAD
 import com.fastcampus.projectboard.domain.Article;
 import com.fastcampus.projectboard.domain.ArticleComment;
 
@@ -40,4 +41,18 @@ public record ArticleCommentDto(
         );
     }
 
+=======
+import java.time.LocalDateTime;
+
+public record ArticleCommentDto(
+        LocalDateTime createdAt,
+        String createdBy,
+        LocalDateTime modifiedAt,
+        String modifiedBy,
+        String content
+) {
+    public static ArticleCommentDto of(LocalDateTime createdAt, String createdBy, LocalDateTime modifiedAt, String modifiedBy, String content) {
+        return new ArticleCommentDto(createdAt, createdBy, modifiedAt, modifiedBy, content);
+    }
+>>>>>>> aa4dea0... #21 - 댓글 서비스 로직의 테스트와 골격 잡기
 }
