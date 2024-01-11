@@ -3,7 +3,6 @@ package com.fastcampus.projectboard.service;
 import com.fastcampus.projectboard.domain.Article;
 import com.fastcampus.projectboard.domain.Hashtag;
 import com.fastcampus.projectboard.domain.UserAccount;
-import com.fastcampus.projectboard.domain.constant.SearchType;
 import com.fastcampus.projectboard.dto.ArticleDto;
 import com.fastcampus.projectboard.dto.ArticleWithCommentsDto;
 import com.fastcampus.projectboard.repository.ArticleRepository;
@@ -18,9 +17,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityNotFoundException;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -109,6 +105,7 @@ public class ArticleService {
 
         hashtagIds.forEach(hashtagService::deleteHashtagWithoutArticles);
     }
+/*
 
     public long getArticleCount() {
         return articleRepository.count();
@@ -127,6 +124,7 @@ public class ArticleService {
     public List<String> getHashtags() {
         return hashtagRepository.findAllHashtagNames(); // TODO: HashtagService 로 이동을 고려해보자.
     }
+*/
 
 
     private Set<Hashtag> renewHashtagsFromContent(String content) {
