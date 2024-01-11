@@ -1,5 +1,6 @@
 package com.fastcampus.projectboard.dto;
 
+<<<<<<< HEAD
 import com.fastcampus.projectboard.domain.Article;
 
 import java.time.LocalDateTime;
@@ -42,4 +43,18 @@ public record ArticleDto(
         );
     }
 
+=======
+import java.time.LocalDateTime;
+
+public record ArticleDto(
+        LocalDateTime createdAt,
+        String createdBy,
+        String title,
+        String content,
+        String hashtag
+) {
+    public static ArticleDto of(LocalDateTime createdAt, String createdBy, String title, String content, String hashtag) {
+        return new ArticleDto(createdAt, createdBy, title, content, hashtag);
+    }
+>>>>>>> cc04734... #21 - 게시글 서비스 로직의 테스트와 골격 잡기
 }

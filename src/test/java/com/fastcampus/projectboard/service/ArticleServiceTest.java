@@ -1,11 +1,17 @@
 package com.fastcampus.projectboard.service;
 
 import com.fastcampus.projectboard.domain.Article;
+<<<<<<< HEAD
 import com.fastcampus.projectboard.domain.UserAccount;
 import com.fastcampus.projectboard.domain.type.SearchType;
 import com.fastcampus.projectboard.dto.ArticleDto;
 import com.fastcampus.projectboard.dto.ArticleWithCommentsDto;
 import com.fastcampus.projectboard.dto.UserAccountDto;
+=======
+import com.fastcampus.projectboard.domain.type.SearchType;
+import com.fastcampus.projectboard.dto.ArticleDto;
+import com.fastcampus.projectboard.dto.ArticleUpdateDto;
+>>>>>>> cc04734... #21 - 게시글 서비스 로직의 테스트와 골격 잡기
 import com.fastcampus.projectboard.repository.ArticleRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,6 +20,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Page;
+<<<<<<< HEAD
 import org.springframework.data.domain.Pageable;
 
 import javax.persistence.EntityNotFoundException;
@@ -22,6 +29,12 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
+=======
+
+import java.time.LocalDateTime;
+
+import static org.assertj.core.api.Assertions.assertThat;
+>>>>>>> cc04734... #21 - 게시글 서비스 로직의 테스트와 골격 잡기
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.*;
 
@@ -33,6 +46,7 @@ class ArticleServiceTest {
 
     @Mock private ArticleRepository articleRepository;
 
+<<<<<<< HEAD
     @DisplayName("검색어 없이 게시글을 검색하면, 게시글 페이지를 반환한다.")
     @Test
     void givenNoSearchParameters_whenSearchingArticles_thenReturnsArticlePage() {
@@ -63,12 +77,25 @@ class ArticleServiceTest {
         // Then
         assertThat(articles).isEmpty();
         then(articleRepository).should().findByTitle(searchKeyword, pageable);
+=======
+    @DisplayName("게시글을 검색하면, 게시글 리스트를 반환한다.")
+    @Test
+    void givenSearchParameters_whenSearchingArticles_thenReturnsArticleList() {
+        // Given
+
+        // When
+        Page<ArticleDto> articles = sut.searchArticles(SearchType.TITLE, "search keyword");
+
+        // Then
+        assertThat(articles).isNotNull();
+>>>>>>> cc04734... #21 - 게시글 서비스 로직의 테스트와 골격 잡기
     }
 
     @DisplayName("게시글을 조회하면, 게시글을 반환한다.")
     @Test
     void givenArticleId_whenSearchingArticle_thenReturnsArticle() {
         // Given
+<<<<<<< HEAD
         Long articleId = 1L;
         Article article = createArticle();
         given(articleRepository.findById(articleId)).willReturn(Optional.of(article));
@@ -110,11 +137,30 @@ class ArticleServiceTest {
 
         // When
         sut.saveArticle(dto);
+=======
+
+        // When
+        ArticleDto articles = sut.searchArticle(1L);
+
+        // Then
+        assertThat(articles).isNotNull();
+    }
+
+    @DisplayName("게시글 정보를 입력하면, 게시글을 생성한다")
+    @Test
+    void givenArticleInfo_whenSavingArticle_thenSavesArticle() {
+        // Given
+        given(articleRepository.save(any(Article.class))).willReturn(null);
+
+        // When
+        sut.saveArticle(ArticleDto.of(LocalDateTime.now(), "Uno", "title", "content", "#java"));
+>>>>>>> cc04734... #21 - 게시글 서비스 로직의 테스트와 골격 잡기
 
         // Then
         then(articleRepository).should().save(any(Article.class));
     }
 
+<<<<<<< HEAD
     @DisplayName("게시글의 수정 정보를 입력하면, 게시글을 수정한다.")
     @Test
     void givenModifiedArticleInfo_whenUpdatingArticle_thenUpdatesArticle() {
@@ -146,19 +192,37 @@ class ArticleServiceTest {
 
         // Then
         then(articleRepository).should().getReferenceById(dto.id());
+=======
+    @DisplayName("게시글의 ID와 수정 정보를 입력하면, 게시글을 수정한다")
+    @Test
+    void givenArticleIdAndModifiedInfo_whenUpdatingArticle_thenUpdatesArticle() {
+        // Given
+        given(articleRepository.save(any(Article.class))).willReturn(null);
+
+        // When
+        sut.updateArticle(1L, ArticleUpdateDto.of("title", "content", "#java"));
+
+        // Then
+        then(articleRepository).should().save(any(Article.class));
+>>>>>>> cc04734... #21 - 게시글 서비스 로직의 테스트와 골격 잡기
     }
 
     @DisplayName("게시글의 ID를 입력하면, 게시글을 삭제한다")
     @Test
     void givenArticleId_whenDeletingArticle_thenDeletesArticle() {
         // Given
+<<<<<<< HEAD
         Long articleId = 1L;
         willDoNothing().given(articleRepository).deleteById(articleId);
+=======
+        willDoNothing().given(articleRepository).delete(any(Article.class));
+>>>>>>> cc04734... #21 - 게시글 서비스 로직의 테스트와 골격 잡기
 
         // When
         sut.deleteArticle(1L);
 
         // Then
+<<<<<<< HEAD
         then(articleRepository).should().deleteById(articleId);
     }
 
@@ -211,6 +275,9 @@ class ArticleServiceTest {
                 LocalDateTime.now(),
                 "uno"
         );
+=======
+        then(articleRepository).should().delete(any(Article.class));
+>>>>>>> cc04734... #21 - 게시글 서비스 로직의 테스트와 골격 잡기
     }
 
 }
