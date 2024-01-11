@@ -33,4 +33,8 @@ class MainControllerTest {
                 .andDo(MockMvcResultHandlers.print());
     }
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 8c5ff42... #21 - 루트 경로를 게시판 페이지로 forward 하도록 컨트롤러 구현
