@@ -20,8 +20,6 @@ public interface ArticleRepository extends
 
     Page<Article> findByTitle(String title, Pageable pageable);
 
-    Page<Article> findByTitle(String title, Pageable pageable);
-
     @Override
     default void customize(QuerydslBindings bindings, QArticle root) {
         bindings.excludeUnlistedProperties(true);
