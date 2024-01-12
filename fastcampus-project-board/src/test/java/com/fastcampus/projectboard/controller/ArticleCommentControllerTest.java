@@ -34,7 +34,8 @@ class ArticleCommentControllerTest {
 
     private final FormDataEncoder formDataEncoder;
 
-    @MockBean private ArticleCommentService articleCommentService;
+    @MockBean
+    private ArticleCommentService articleCommentService;
 
 
     ArticleCommentControllerTest(

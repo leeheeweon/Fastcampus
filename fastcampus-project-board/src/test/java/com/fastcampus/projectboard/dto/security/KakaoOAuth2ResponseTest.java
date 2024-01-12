@@ -41,7 +41,8 @@ class KakaoOAuth2ResponseTest {
                     }
                 }
                 """;
-        Map<String, Object> attributes = mapper.readValue(serializedResponse, new TypeReference<>() {});
+        Map<String, Object> attributes = mapper.readValue(serializedResponse, new TypeReference<>() {
+        });
 
         // When
         KakaoOAuth2Response result = KakaoOAuth2Response.from(attributes);

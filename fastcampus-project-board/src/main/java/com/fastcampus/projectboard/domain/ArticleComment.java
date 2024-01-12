@@ -41,10 +41,13 @@ public class ArticleComment extends AuditingFields {
     @OneToMany(mappedBy = "parentCommentId", cascade = CascadeType.ALL)
     private Set<ArticleComment> childComments = new LinkedHashSet<>();
 
-    @Setter @Column(nullable = false, length = 500) private String content; // 본문
+    @Setter
+    @Column(nullable = false, length = 500)
+    private String content; // 본문
 
 
-    protected ArticleComment() {}
+    protected ArticleComment() {
+    }
 
     private ArticleComment(Article article, UserAccount userAccount, Long parentCommentId, String content) {
         this.article = article;

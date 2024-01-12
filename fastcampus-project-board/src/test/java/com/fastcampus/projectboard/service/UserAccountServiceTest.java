@@ -20,9 +20,11 @@ import static org.mockito.BDDMockito.then;
 @ExtendWith(MockitoExtension.class)
 class UserAccountServiceTest {
 
-    @InjectMocks private UserAccountService sut;
+    @InjectMocks
+    private UserAccountService sut;
 
-    @Mock private UserAccountRepository userAccountRepository;
+    @Mock
+    private UserAccountRepository userAccountRepository;
 
     @DisplayName("존재하는 회원 ID를 검색하면, 회원 데이터를 Optional로 반환한다.")
     @Test

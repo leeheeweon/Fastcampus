@@ -25,8 +25,10 @@ class AuthControllerTest {
 
     private final MockMvc mvc;
 
-    @MockBean private ArticleService articleService;
-    @MockBean private PaginationService paginationService;
+    @MockBean
+    private ArticleService articleService;
+    @MockBean
+    private PaginationService paginationService;
 
     AuthControllerTest(@Autowired MockMvc mvc) {
         this.mvc = mvc;
@@ -51,6 +53,7 @@ class AuthControllerTest {
      * 어떤 컨트롤러도 필요하지 않은 테스트임을 나타내기 위해 테스트용 빈 컴포넌트를 사용함.
      */
     @TestComponent
-    static class EmptyController {}
+    static class EmptyController {
+    }
 
 }

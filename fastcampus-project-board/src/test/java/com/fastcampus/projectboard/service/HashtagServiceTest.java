@@ -25,9 +25,11 @@ import static org.mockito.BDDMockito.then;
 @ExtendWith(MockitoExtension.class)
 class HashtagServiceTest {
 
-    @InjectMocks private HashtagService sut;
+    @InjectMocks
+    private HashtagService sut;
 
-    @Mock private HashtagRepository hashtagRepository;
+    @Mock
+    private HashtagRepository hashtagRepository;
 
     @DisplayName("본문을 파싱하면, 해시태그 이름들을 중복 없이 반환한다.")
     @MethodSource

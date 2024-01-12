@@ -27,10 +27,13 @@ public class Hashtag extends AuditingFields {
     @ManyToMany(mappedBy = "hashtags")
     private Set<Article> articles = new LinkedHashSet<>();
 
-    @Setter @Column(nullable = false) private String hashtagName; // 해시태그 이름
+    @Setter
+    @Column(nullable = false)
+    private String hashtagName; // 해시태그 이름
 
 
-    protected Hashtag() {}
+    protected Hashtag() {
+    }
 
     private Hashtag(String hashtagName) {
         this.hashtagName = hashtagName;
